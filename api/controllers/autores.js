@@ -8,7 +8,8 @@ module.exports = app => {
 				console.log('Erro ao listar os autores: ' + error);
 				res.status(500).send(error);
 			} else {
-				res.json(result);
+				res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+				res.status(200).send(result);
 			}
 		});
 

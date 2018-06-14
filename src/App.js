@@ -2,71 +2,82 @@ import React, { Component } from 'react';
 import './css/pure-min.css';
 import './css/side-menu.css';
 import './css/main.css';
+import $ from 'jquery';
 
 class App extends Component {
 
     constructor() {
         super();
-        this.state = {lista : [{nome:'Matheus',email:'ms.sartori@outlook.com.br',senha:'123456'}]};
+        this.state = {lista : []};
+    }
+
+    componentDidMount() {
+        $.ajax({
+            url: "http://localhost:8080/api/autores",
+            dataType: "json",
+            success: response => {
+                this.setState({lista:response});
+            }
+        });
     }
 
     render() {
         return (
             <div id="layout">
-                <a href="#menu" id="menuLink" class="menu-link">
+                <a href="#menu" id="menuLink" className="menu-link">
                     <span></span>
                 </a>
 
                 <div id="menu">
-                    <div class="pure-menu">
-                        <a class="pure-menu-heading" href="#">Company</a>
+                    <div className="pure-menu">
+                        <a className="pure-menu-heading" href="#">Company</a>
 
-                        <ul class="pure-menu-list">
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Autores</a></li>
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Livros</a></li>
+                        <ul className="pure-menu-list">
+                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Home</a></li>
+                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Autores</a></li>
+                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Livros</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div id="main">
-                    <div class="header">
+                    <div className="header">
                     <h1>Cadastro de Autores</h1>
                 </div>
-                <div class="content top-spacing" id="content">
-                    <div class="pure-form pure-form-aligned">
-                        <form class="pure-form pure-form-aligned">
-                            <div class="pure-control-group">
+                <div className="content top-spacing" id="content">
+                    <div className="pure-form pure-form-aligned">
+                        <form className="pure-form pure-form-aligned">
+                            <div className="pure-control-group">
                                 <label htmlFor="nome">Nome</label>
                                 <input id="nome" type="text" name="nome" value=""  />
                             </div>
-                            <div class="pure-control-group">
-                                <label htmlFor="email">Email</label>
+                            <div className="pure-control-group">
+                                <label htmlFor="email">E-mail</label>
                                 <input id="email" type="email" name="email" value=""  />
                             </div>
-                            <div class="pure-control-group">
+                            <div className="pure-control-group">
                                 <label htmlFor="senha">Senha</label>
                                 <input id="senha" type="password" name="senha"  />
                             </div>
-                            <div class="pure-control-group">
+                            <div className="pure-control-group">
                                 <label></label>
-                                <button type="submit" class="pure-button pure-button-primary">Gravar</button>
+                                <button type="submit" className="pure-button pure-button-primary">Gravar</button>
                             </div>
                         </form>
                     </div>
                     <div>
-                        <table class="pure-table">
+                        <table className="pure-table">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>email</th>
+                                    <th>E-mail</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     this.state.lista.map(function(autor) {
                                         return (
-                                            <tr>
+                                            <tr key={autor.id}>
                                                 <td>{autor.nome}</td>
                                                 <td>{autor.email}</td>
                                             </tr>
