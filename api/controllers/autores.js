@@ -1,7 +1,7 @@
 module.exports = app => {
 	app.get('/api/autores', (req,res) => {
-		let connection = app.connection.connectionFactory();
-		let autores = app.models.AutoresDao(connection);
+		let connection = new app.connection.connectionFactory();
+		let autores = new app.models.AutoresDao(connection);
 
 		autores.listar((error,result) => {
 			if(error) {
