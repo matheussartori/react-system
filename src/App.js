@@ -21,6 +21,11 @@ class App extends Component {
         });
     }
 
+    cadastraAutor(event) {
+        event.preventDefalt();
+        console.log('Dados sendo enviados...');
+    }
+
     render() {
         return (
             <div id="layout">
@@ -46,7 +51,7 @@ class App extends Component {
                 </div>
                 <div className="content top-spacing" id="content">
                     <div className="pure-form pure-form-aligned">
-                        <form className="pure-form pure-form-aligned">
+                        <form className="pure-form pure-form-aligned" onSubmit={this.cadastraAutor} method="post">
                             <div className="pure-control-group">
                                 <label htmlFor="nome">Nome</label>
                                 <input id="nome" type="text" name="nome" value=""  />
