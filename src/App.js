@@ -15,15 +15,31 @@ class App extends Component {
         $.ajax({
             url: "http://localhost:8080/api/autores",
             dataType: "json",
-            success: response => {
-                this.setState({lista:response});
-            }
+            success: response =>
+                this.setState({lista:response})
         });
     }
 
     cadastraAutor(event) {
-        event.preventDefalt();
-        console.log('Dados sendo enviados...');
+        event.preventDefault();
+
+        $.ajax({
+            url: "http://localhost:8080/api/autores",
+            contentType: "application/json",
+            dataType: "json",
+            type: "post",
+            data: JSON.stringify({
+                nome: '',
+                email: '',
+                senha: ''
+            }),
+            success: response => {
+                console.log('Enviado com sucesso!');
+            },
+            error: response => {
+                console.log('Erro');
+            }
+        });
     }
 
     render() {
@@ -35,12 +51,12 @@ class App extends Component {
 
                 <div id="menu">
                     <div className="pure-menu">
-                        <a className="pure-menu-heading" href="#">Company</a>
+                        <a className="pure-menu-heading" href="">Company</a>
 
                         <ul className="pure-menu-list">
-                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Home</a></li>
-                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Autores</a></li>
-                            <li className="pure-menu-item"><a href="#" className="pure-menu-link">Livros</a></li>
+                            <li className="pure-menu-item"><a href="" className="pure-menu-link">Home</a></li>
+                            <li className="pure-menu-item"><a href="" className="pure-menu-link">Autores</a></li>
+                            <li className="pure-menu-item"><a href="" className="pure-menu-link">Livros</a></li>
                         </ul>
                     </div>
                 </div>
