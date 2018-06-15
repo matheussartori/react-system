@@ -14,4 +14,16 @@ module.exports = app => {
 		});
 
 	});
+
+	app.post('/api/autores', (req,res) => {
+		var autor = req.body;
+
+		console.log(autor);
+
+		let connection = new app.connection.connectionFactory();
+		let autores = new app.models.AutoresDao(connection);
+
+		res.setHeader('Access-Control-Allow-Origin', '*');
+		res.status(200).send('empty1');
+	});
 }
