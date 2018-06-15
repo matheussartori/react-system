@@ -19,8 +19,9 @@ class App extends Component {
         $.ajax({
             url: "http://localhost:8080/api/autores",
             dataType: "json",
-            success: response =>
-                this.setState({lista:response})
+            success: function(response) {
+                this.setState({lista:response});
+            }.bind(this)
         });
     }
 
@@ -37,9 +38,9 @@ class App extends Component {
                 email: this.state.email,
                 senha: this.state.senha
             }),
-            success: response => {
-                console.log('Enviado com sucesso!');
-            },
+            success: function(response) {
+                this.setState({lista: response});
+            }.bind(this),
             error: response => {
                 console.log('Erro');
             }
