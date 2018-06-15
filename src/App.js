@@ -4,6 +4,9 @@ import './css/side-menu.css';
 import './css/main.css';
 import $ from 'jquery';
 
+import InputCustomForm from './components/InputCustomForm';
+import ButtonCustomForm from './components/ButtonCustomForm';
+
 class App extends Component {
 
     constructor() {
@@ -39,9 +42,9 @@ class App extends Component {
                 senha: this.state.senha
             }),
             success: function(response) {
-                this.setState({lista: response});
+                this.setState({lista:response});
             }.bind(this),
-            error: response => {
+            error: function(response) {
                 console.log('Erro');
             }
         });
@@ -85,22 +88,10 @@ class App extends Component {
                 <div className="content top-spacing" id="content">
                     <div className="pure-form pure-form-aligned">
                         <form className="pure-form pure-form-aligned" onSubmit={this.cadastraAutor} method="post">
-                            <div className="pure-control-group">
-                                <label htmlFor="nome">Nome</label>
-                                <input id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setNome}/>
-                            </div>
-                            <div className="pure-control-group">
-                                <label htmlFor="email">E-mail</label>
-                                <input id="email" type="email" name="email" value={this.state.email} onChange={this.setEmail}/>
-                            </div>
-                            <div className="pure-control-group">
-                                <label htmlFor="senha">Senha</label>
-                                <input id="senha" type="password" name={this.state.senha} onChange={this.setSenha}/>
-                            </div>
-                            <div className="pure-control-group">
-                                <label></label>
-                                <button type="submit" className="pure-button pure-button-primary">Gravar</button>
-                            </div>
+                        <InputCustomForm id="nome" type="text" name="nome" label="Nome" value={this.state.nome} onChange={this.setNome}/>
+                        <InputCustomForm id="email" type="email" name="email" label="E-mail" value={this.state.email} onChange={this.setEmail}/>
+                        <InputCustomForm id="senha" type="password" name="senha" label="Senha" value={this.state.senha} onChange={this.setSenha}/>
+                        <ButtonCustomForm label="" buttonText="Gravar"/>
                         </form>
                     </div>
                     <div>
