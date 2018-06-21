@@ -5,7 +5,7 @@ import $ from 'jquery';
 import InputCustomForm from './components/InputCustomForm';
 import ButtonCustomForm from './components/ButtonCustomForm';
 
-export class FormularioAutores extends Component {
+class FormularioAutores extends Component {
     constructor() {
         super();
         this.state = {nome:'', email: '', senha: ''};
@@ -29,7 +29,7 @@ export class FormularioAutores extends Component {
                 senha: this.state.senha
             }),
             success: function(response) {
-                this.setState({lista:response});
+                this.props.callbackAtualiza(response);
             }.bind(this),
             error: function(response) {
                 console.log('Erro');
@@ -63,22 +63,7 @@ export class FormularioAutores extends Component {
     }
 }
 
-export class TabelaAutores extends Component {
-    constructor() {
-        super();
-        this.state = {lista : []};
-    }
-
-    componentDidMount() {
-        $.ajax({
-            url: "http://localhost:8080/api/autores",
-            dataType: "json",
-            success: function(response) {
-                this.setState({lista:response});
-            }.bind(this)
-        });
-    }
-    
+class TabelaAutores extends Component {
     render() {
         return(
             <div>
@@ -91,7 +76,7 @@ export class TabelaAutores extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.lista.map(function(autor) {
+                            this.props.lista.map(function(autor) {
                                 return (
                                     <tr key={autor.id}>
                                         <td>{autor.nome}</td>
@@ -102,6 +87,37 @@ export class TabelaAutores extends Component {
                         }
                     </tbody>
                 </table>
+            </div>
+        );
+    }
+}
+
+export class AutorBox extends Component {
+    constructor() {
+        super();
+        this.state = {lista : []};
+        this.atualizaListagem = this.atualizaListagem.bind(this);
+    }
+
+    componentDidMount() {
+        $.ajax({
+            url: "http://localhost:8080/api/autores",
+            dataType: "json",
+            success: function(response) {
+                this.setState({lista:response});
+            }.bind(this)
+        });
+    }
+
+    atualizaListagem(novaLista) {
+        this.setState({lista:novaLista});
+    }
+
+    render() {
+        return (
+            <div>
+                <FormularioAutores callbackAtualiza={this.atualizaListagem}/>
+                <TabelaAutores lista={this.state.lista}/>
             </div>
         );
     }

@@ -3,7 +3,7 @@ import './css/pure-min.css';
 import './css/side-menu.css';
 import './css/main.css';
 
-import {FormularioAutores, TabelaAutores} from './Autor';
+import {AutorBox} from './Autor';
 
 class App extends Component {
 
@@ -31,8 +31,7 @@ class App extends Component {
                     <h1>Cadastro de Autores</h1>
                 </div>
                 <div className="content top-spacing" id="content">
-                <FormularioAutores/>
-                <TabelaAutores/>
+                <AutorBox/>
                 </div>
             </div>
         </div>
