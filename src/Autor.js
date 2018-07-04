@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import $ from 'jquery';
 import PubSub from 'pubsub-js';
+import TratadorErros from './TratadorErros'
 
 import InputCustomForm from './components/InputCustomForm';
 import ButtonCustomForm from './components/ButtonCustomForm';
@@ -33,7 +34,9 @@ class FormularioAutores extends Component {
                 PubSub.publish('atualiza-lista-autores', novaLista);
             },
             error: function(response) {
-                console.log('Erro');
+                if(response.status === 400) {
+                    new TratadorErros().lidarErros(response.responseJSON);
+                }
             }
         });
     }
