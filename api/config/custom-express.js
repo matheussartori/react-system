@@ -18,7 +18,6 @@ module.exports = function() {
 		.include('controllers')
 		.then('connection')
 		.then('models')
-		.then('services')
 		.into(app);
 
 	return app;
