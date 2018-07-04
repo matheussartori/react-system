@@ -37,7 +37,14 @@ module.exports = app => {
 					console.log('Erro ao cadastrar o autor: ' + error);
 					res.status(400).send(error);
 				} else {
-					res.status(200).send(result);
+					autores.listar((error,result) => {
+						if(error) {
+							console.log('Erro ao listar os autores: ' + error);
+							res.status(500).send(error);
+						} else {
+							res.status(200).send(result);
+						}
+					});
 				}
 			});
 		}

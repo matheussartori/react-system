@@ -92,7 +92,7 @@ class TabelaAutores extends Component {
     }
 }
 
-export class AutorBox extends Component {
+export default class AutorBox extends Component {
     constructor() {
         super();
         this.state = {lista : []};

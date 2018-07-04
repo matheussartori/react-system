@@ -3,7 +3,7 @@ import './css/pure-min.css';
 import './css/side-menu.css';
 import './css/main.css';
 
-import {AutorBox} from './Autor';
+import AutorBox from './Autor';
 
 class App extends Component {
 
