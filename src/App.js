@@ -4,7 +4,6 @@ import './css/side-menu.css';
 import './css/main.css';
 import {Link} from 'react-router-dom';
 
-import AutorBox from './Autor';
 
 class App extends Component {
 
@@ -22,20 +21,15 @@ class App extends Component {
                         <ul className="pure-menu-list">
                             <li className="pure-menu-item"><Link to="/" className="pure-menu-link">Home</Link></li>
                             <li className="pure-menu-item"><Link to="/autor" className="pure-menu-link">Autores</Link></li>
-                            <li className="pure-menu-item"><Link to="#" className="pure-menu-link">Livros</Link></li>
+                            <li className="pure-menu-item"><Link to="/livro" className="pure-menu-link">Livros</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div id="main">
-                    <div className="header">
-                    <h1>React system</h1>
-                </div>
-                <div className="content top-spacing" id="content">
-
+                    {this.props.children}
                 </div>
             </div>
-        </div>
     );
   }
 }
