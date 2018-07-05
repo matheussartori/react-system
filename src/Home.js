@@ -5,7 +5,7 @@ export default class Home extends Component {
         return (
             <div>
                 <div className="header">
-                    <h1>Welcome to Bibliotech</h1>
+                    <h1>Sistema Bibliotech</h1>
                 </div>
                 <div className="content top-spacing" id="content">
 
