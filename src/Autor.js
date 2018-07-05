@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import $ from 'jquery';
 import PubSub from 'pubsub-js';
-import TratadorErros from './TratadorErros'
+import TratadorErros from './TratadorErros';
 
 import InputCustomForm from './components/InputCustomForm';
 import ButtonCustomForm from './components/ButtonCustomForm';
@@ -127,8 +127,8 @@ export default class AutorBox extends Component {
                     <h1>Cadastro de autores</h1>
                 </div>
                 <div className="content top-spacing" id="content">
-                    <FormularioAutores/>
-                    <TabelaAutores lista={this.state.lista}/>
+                    <FormularioAutores />
+                    <TabelaAutores lista={this.state.lista} />
                 </div>
             </div>
         );
