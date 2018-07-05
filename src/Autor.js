@@ -32,11 +32,15 @@ class FormularioAutores extends Component {
             }),
             success: function(novaLista) {
                 PubSub.publish('atualiza-lista-autores', novaLista);
-            },
-            error: function(response) {
+                this.setState({nome: '', email: '', senha: ''});
+            }.bind(this),
+            error: response => {
                 if(response.status === 400) {
                     new TratadorErros().lidarErros(response.responseJSON);
                 }
+            },
+            beforeSend: () => {
+                PubSub.publish('limpa-erros',{});
             }
         });
     }

@@ -19,7 +19,13 @@ export class InputCustomForm extends Component {
 
     componentDidMount() {
         PubSub.subscribe('erro-validacao', (topic,error) => {
-            this.setState({msgErro:error.msg});
+            if(error.param === this.props.name) {
+                this.setState({msgErro:error.msg});
+            }
+        });
+
+        PubSub.subscribe('limpa-erros', topic => {
+            this.setState({msgErro:''});
         });
     }
 }
