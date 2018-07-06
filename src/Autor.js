@@ -12,9 +12,6 @@ class FormularioAutores extends Component {
         super();
         this.state = {nome:'', email: '', senha: ''};
         this.cadastraAutor = this.cadastraAutor.bind(this);
-        this.setNome = this.setNome.bind(this);
-        this.setEmail = this.setEmail.bind(this);
-        this.setSenha = this.setSenha.bind(this);
     }
 
     cadastraAutor(event) {
@@ -45,25 +42,17 @@ class FormularioAutores extends Component {
         });
     }
 
-    setNome(event) {
-        this.setState({nome:event.target.value});
-    }
-
-    setEmail(event) {
-        this.setState({email:event.target.value});
-    }
-
-    setSenha(event) {
-        this.setState({senha:event.target.value});
+    salvaAlteracao(nomeInput,evento) {
+        this.setState({[nomeInput]:evento.target.value})
     }
 
     render() {
         return(
             <div className="pure-form pure-form-aligned">
                 <form className="pure-form pure-form-aligned" onSubmit={this.cadastraAutor} method="post">
-                <InputCustomForm id="nome" type="text" name="nome" label="Nome" value={this.state.nome} onChange={this.setNome}/>
-                <InputCustomForm id="email" type="email" name="email" label="E-mail" value={this.state.email} onChange={this.setEmail}/>
-                <InputCustomForm id="senha" type="password" name="senha" label="Senha" value={this.state.senha} onChange={this.setSenha}/>
+                <InputCustomForm id="nome" type="text" name="nome" label="Nome" value={this.state.nome} onChange={this.salvaAlteracao.bind(this,'nome')}/>
+                <InputCustomForm id="email" type="email" name="email" label="E-mail" value={this.state.email} onChange={this.salvaAlteracao.bind(this,'email')}/>
+                <InputCustomForm id="senha" type="password" name="senha" label="Senha" value={this.state.senha} onChange={this.salvaAlteracao.bind(this,'senha')}/>
                 <ButtonCustomForm label="" buttonText="Gravar"/>
                 </form>
             </div>
