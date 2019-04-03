@@ -5,7 +5,7 @@ function createDBConnection() {
 		host: 'localhost',
 		user: 'root',
 		password: 'ronan841',
-		database: 'react'
+		database: 'bibliotech'
 	});
 }
 
